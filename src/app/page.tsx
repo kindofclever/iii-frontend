@@ -1,10 +1,13 @@
 import { Button } from '@/components/ui/button';
-import Image from 'next/image';
+import getStrapiData from '@/utilities/getStrapiData';
 
-export default function Home() {
+export default async function Home() {
+  const data = await getStrapiData('/api/title');
+  const title = data?.data.attributes.title;
+
   return (
     <main className='px-4 py-10'>
-      <Button variant='outline'>My First Button</Button>
+      <Button variant='outline'>{title}</Button>
     </main>
   );
 }
